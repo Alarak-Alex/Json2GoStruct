@@ -11,10 +11,10 @@ interface ParsedCurl {
     params: { [key: string]: string };
 }
 
-export function curlToGo(curlCommand: string): string {
+export function curlToGo(curlCommand: string, packageName?: string): string {
     try {
         const parsed = parseCurl(curlCommand);
-        return generateGoCode(parsed);
+        return generateGoCode(parsed, packageName);
     } catch (error: any) {
         return `// Error parsing cURL command: ${error.message}`;
     }
@@ -70,8 +70,9 @@ function parseCurl(curlCommand: string): ParsedCurl {
     return result;
 }
 
-function generateGoCode(parsed: ParsedCurl): string {
-    let code = `package main\n\n`;
+function generateGoCode(parsed: ParsedCurl, packageName?: string): string {
+    const pkg = packageName || 'main';
+    let code = `package ${pkg}\n\n`;
     code += `import (\n`;
     code += `\t"fmt"\n`;
     code += `\t"net/http"\n`;

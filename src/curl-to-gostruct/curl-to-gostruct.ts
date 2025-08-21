@@ -5,14 +5,15 @@
 
 import { jsonToGo } from '../json-to-go/json-to-go';
 
-export function curlToGoStruct(curlCommand: string): string {
+export function curlToGoStruct(curlCommand: string, packageName?: string): string {
     try {
         const jsonData = extractJsonFromCurl(curlCommand);
         if (!jsonData) {
             return '// No JSON data found in curl command';
         }
         
-        const result = jsonToGo(jsonData, 'RequestStruct', 'main', false);
+        const pkg = packageName || 'main';
+        const result = jsonToGo(jsonData, 'RequestStruct', pkg, false);
         if (result.error) {
             return `// Error generating struct: ${result.error}`;
         }
