@@ -1,0 +1,87 @@
+{
+  "name": "json2gostruct",
+  "displayName": "Json2GoStruct",
+  "description": "json2gostruct",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "json2gostruct.helloWorld",
+        "title": "golang编码辅助工具集"
+      },
+      {
+        "command": "json2gostruct.JsonToGo",
+        "title": "json生成go结构体(JsonToGo)",
+        "category": "json2gostruct"
+      },
+      {
+        "command": "json2gostruct.CurlToGo",
+        "title": "curl生成go代码(CurlToGo)",
+        "category": "生成golang代码或者结构体"
+      },
+      {
+        "command": "json2gostruct.CurlToGoStructs",
+        "title": "curl生成go结构体(CurlToGoStructs)",
+        "category": "生成golang代码或者结构体"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "json2gostruct.JsonToGo",
+          "when": "!explorerResourceIsFolder",
+          "group": "2_workspace@1"
+        },
+        {
+          "group": "2_workspace@2",
+          "when": "!explorerResourceIsFolder",
+          "submenu": "json2gostruct/submenu/generate"
+        }
+      ],
+      "json2gostruct/submenu/generate": [
+        {
+          "command": "json2gostruct.CurlToGo",
+          "group": "1_generate@1"
+        },
+        {
+          "command": "json2gostruct.CurlToGoStructs",
+          "group": "1_generate@2"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "json2gostruct/submenu/generate",
+        "label": "生成golang代码或者结构体"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.103.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
+    "eslint": "^9.32.0",
+    "typescript": "^5.9.2",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}

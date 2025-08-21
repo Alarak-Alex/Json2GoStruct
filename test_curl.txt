@@ -1,0 +1,12 @@
+curl -X POST "https://api.example.com/users" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer token123" \
+  -d '{
+    "username": "testuser",
+    "email": "test@example.com",
+    "profile": {
+      "firstName": "Test",
+      "lastName": "User",
+      "age": 25
+    }
+  }'
