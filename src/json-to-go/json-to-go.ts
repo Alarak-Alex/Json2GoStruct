@@ -118,9 +118,21 @@ function capitalizeFirst(str: string): string {
         return str;
     }
     
-    // Convert snake_case or kebab-case to PascalCase
-    return str
-        .split(/[_-]/) // Split by underscore or hyphen
+    // Convert various naming conventions to PascalCase (Go struct field naming)
+    // Handle snake_case, kebab-case, camelCase, and mixed cases
+    
+    // First, normalize the string by replacing separators and splitting on word boundaries
+    const words = str
+        // Replace underscores and hyphens with spaces
+        .replace(/[_-]/g, ' ')
+        // Insert space before uppercase letters (for camelCase)
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        // Split by spaces and filter out empty strings
+        .split(/\s+/)
+        .filter(word => word.length > 0);
+    
+    // Convert each word to proper case (first letter uppercase, rest lowercase)
+    return words
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
         .join('');
 }
