@@ -1,0 +1,23 @@
+{
+  "user_name": "John Doe",
+  "user-email": "john@example.com",
+  "firstName": "John",
+  "last_name": "Doe",
+  "phoneNumber": "123-456-7890",
+  "home_address": {
+    "street_name": "Main Street",
+    "house-number": "123",
+    "zipCode": "12345",
+    "city_name": "New York"
+  },
+  "user_preferences": {
+    "theme_color": "blue",
+    "notification-settings": {
+      "email_notifications": true,
+      "push-notifications": false,
+      "sms_alerts": true
+    }
+  },
+  "account_created_at": "2023-12-25T10:30:00Z",
+  "last-login": "2024-01-15T14:22:33Z"
+}
